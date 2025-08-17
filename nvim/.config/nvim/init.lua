@@ -1,4 +1,4 @@
--- Dpnpinto NVim configss
+-- Dpnpinto NVim configs
 
 local vim = vim
 vim.cmd("colorscheme retrobox")
@@ -10,7 +10,7 @@ vim.o.completeopt = "menu,menuone,noselect"
 -- define global key
 vim.g.mapleader = " "
 
--- Don't forget to install the language-servers of the languages fo the lsp
+-- Don't forget to install the language-servers of the languages for the lsp
 -- for C I use ccls (C language server)
 vim.lsp.enable({ "bashls", "lua_ls", "ansiblels", "ccls" })
 
