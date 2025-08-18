@@ -1,18 +1,23 @@
--- Dpnpinto NVim configss
-
+-- Dpnpinto NVim configs
+-- To get lsp error only here
 local vim = vim
+-- Disable Mouse
 vim.opt.mouse = ""
+-- Define colors
 vim.cmd("colorscheme retrobox")
+-- Get line numbers
 vim.o.number = true
+-- Get relative numbers
 vim.o.relativenumber = true
+-- No wrap lines
 vim.o.wrap = false
--- for not selecting first option of autocomplete
+-- For not selecting first option of autocomplete
 vim.o.completeopt = "menu,menuone,noselect"
--- define global key
+-- Define global key
 vim.g.mapleader = " "
 
 -- Don't forget to install the language-servers of the languages fo the lsp
--- for C I use ccls (C language server)
+-- For C I use ccls (C language server)
 vim.lsp.enable({ "bashls", "lua_ls", "ansiblels", "ccls" })
 
 vim.diagnostic.config({
