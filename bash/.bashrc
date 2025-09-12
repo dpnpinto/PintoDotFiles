@@ -29,6 +29,14 @@ alias df='dysk'
 alias lf='yazi'
 alias du='ncdu --color dark'
 
+# Docker clean all stuff
+
+alias docker-clean=' \
+  docker container prune -f ; \
+  docker image prune ; \
+  docker network prune ; \ 
+  docker volume prune ; '
+
 # Get some nice colors in man pages and use most as the pager
 
 export MANPAGER="less -R --use-color -Dd+r -Du+b"
