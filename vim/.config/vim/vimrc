@@ -1,11 +1,27 @@
+call plug#begin()
+Plug 'ghifarit53/tokyonight-vim' " TokyoNight Colors
+Plug 'ap/vim-css-color' " colors in RGB defenitions
+call plug#end()
+
+set termguicolors
+
+let g:tokyonight_style = 'night' " available: night, storm
+let g:tokyonight_enable_italic = 1 " italic in tokyo night
+
 set nocompatible
-set t_Co=256
-colorscheme retrobox
-set background=dark
-set number
-set relativenumber
-set cursorline
-filetype on
-syntax on
-set ignorecase
-set wildmenu
+filetype off "Don't detect file type
+set hlsearch "highlight searches
+set tabstop=2 "tabs with 2 spaces
+set shiftwidth=2 "tabs swift equal to 2 spaces
+set expandtab "Convert tab to spaces
+set t_Co=256 "Teminal colors to 256
+set background=dark "set back color to dark
+set number " Set numbers
+set relativenumber " Relativa numbers
+set wildmenu "set a more usefull menu
+set colorcolumn=120"Mark that you don't whant to go over 80
+filetype off "Don't detect file type
+colorscheme tokyonight  "set color scheme
+set cursorline "highlight cursor line
+syntax on "Syntax highlight
+set ignorecase "ignore case in search
