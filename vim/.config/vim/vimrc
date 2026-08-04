@@ -1,6 +1,17 @@
+"Load pluging
+" :source %
+" :PlugInstall
+
+let g:llama_config = {
+\   'endpoint_fim': 'http://192.168.8.172:8080/infill',
+\   'show_info': 0,
+\   'auto_fim': v:true}
+
 call plug#begin()
 Plug 'ghifarit53/tokyonight-vim' " TokyoNight Colors
-Plug 'ap/vim-css-color' " colors in RGB defenitions
+Plug 'ap/vim-css-color' " Colors in RGB defenitions
+Plug 'ggml-org/llama.vim' " Llama.cpp support
+Plug 'junegunn/fzf.vim' " FZF support
 call plug#end()
 
 set termguicolors
@@ -8,8 +19,28 @@ set termguicolors
 let g:tokyonight_style = 'night' " available: night, storm
 let g:tokyonight_enable_italic = 1 " italic in tokyo night
 
-set nocompatible "not limiting vim
-filetype off "Don't detect file type
+colorscheme tokyonight "set color scheme
+"colorscheme retrobox  "set color scheme
+
+" Autocompletion settings
+"for more information: :h ins-autocompletion
+
+"set completeopt=menuone,noinsert,noselect
+set autocomplete
+set complete=.^5,w^5,b^5,u^5
+set completeopt=popup
+
+"Keys
+" set mapleader to space
+let mapleader=" " "set leader key to space
+
+nmap <silent> <leader>f <Cmd>Files<CR>
+nmap <silent> <leader>g <Cmd>RG<CR>
+
+" Defenitions 
+set mouse=a "Enable mouse in all modes
+set nocompatible
+" filetype off "Don't detect file type
 set hlsearch "highlight searches
 set tabstop=2 "tabs with 2 spaces
 set shiftwidth=2 "tabs swift equal to 2 spaces
@@ -19,8 +50,7 @@ set background=dark "set back color to dark
 set number " Set numbers
 set relativenumber " Relativa numbers
 set wildmenu "set a more usefull menu
-set colorcolumn=120 "Mark that you don't whant to go over 120
-colorscheme tokyonight  "set color scheme
+set colorcolumn=120"Mark that you don't whant to go over 80
 set cursorline "highlight cursor line
 syntax on "Syntax highlight
 set ignorecase "ignore case in search
