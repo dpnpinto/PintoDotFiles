@@ -3,7 +3,7 @@
 " :PlugInstall
 
 let g:llama_config = {
-\   'endpoint_fim': 'http://your_llamma.cpp_server:port/infill',
+\   'endpoint_fim': 'http://192.168.8.172:8080/infill',
 \   'show_info': 0,
 \   'auto_fim': v:true}
 
@@ -30,11 +30,11 @@ set autocomplete
 set complete=.^5,w^5,b^5,u^5
 set completeopt=popup
 
-"Keys
-" set mapleader to space
+"Keys Defenitions
 let mapleader=" " "set leader key to space
-
+" Call commmand Files of FZF
 nmap <silent> <leader>f <Cmd>Files<CR>
+" Call commmand RG of FZF
 nmap <silent> <leader>g <Cmd>RG<CR>
 
 " Defenitions 
