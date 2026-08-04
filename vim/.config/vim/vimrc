@@ -3,7 +3,7 @@
 " :PlugInstall
 
 let g:llama_config = {
-\   'endpoint_fim': 'http://192.168.8.172:8080/infill',
+\   'endpoint_fim': 'your_llamma.cpp_server:port/infill',
 \   'show_info': 0,
 \   'auto_fim': v:true}
 
