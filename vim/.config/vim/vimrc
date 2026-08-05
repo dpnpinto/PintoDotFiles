@@ -1,56 +1,130 @@
-"Load pluging
-" :source %
-" :PlugInstall
+vim9script
 
-let g:llama_config = {
-\   'endpoint_fim': 'your_llamma.cpp_server:port/infill',
-\   'show_info': 0,
-\   'auto_fim': v:true}
+# Load pluging
+# :source %
+# :PlugInstall
+# Zezoca local stuff 
+g:llama_config = {
+endpoint_fim: '192.168.8.172:8080/infill',
+show_info: 0,
+auto_fim: true,
+ring_update_ms: 500,
+enable_at_startup: true,
+keymap_fim_accept_full: '<Tab>',
+keymap_fim_accept_line: '<C-l>',
+keymap_fim_accept_word: '<C-w>',
+keymap_fim_clear: '<C-c>',
+keymap_fim_invoke: '<C-x>',
+keymap_fim_next: '<C-n>',
+keymap_fim_prev: '<C-p>'
+}
 
-call plug#begin()
-Plug 'ghifarit53/tokyonight-vim' " TokyoNight Colors
-Plug 'ap/vim-css-color' " Colors in RGB defenitions
-Plug 'ggml-org/llama.vim' " Llama.cpp support
-Plug 'junegunn/fzf.vim' " FZF support
-call plug#end()
+# PlugInstall
+plug#begin()
+Plug 'ghifarit53/tokyonight-vim' # TokyoNight Colors
+Plug 'ap/vim-css-color' # Colors in RGB defenitions
+Plug 'ggml-org/llama.vim' # Llama.cpp support
+Plug 'junegunn/fzf.vim' # FZF support
+Plug 'yegappan/lsp' # LSP support
+plug#end()
 
-set termguicolors
+set termguicolors # enable 24-bit RGB colors
+set background=dark # set background to dark
 
-let g:tokyonight_style = 'night' " available: night, storm
-let g:tokyonight_enable_italic = 1 " italic in tokyo night
+# TokyoNight settings
+g:tokyonight_transparent = 1 # transparent background
+g:tokyonight_style = 'night' # available: night, storm
+g:tokyonight_enable_italic = 1 # italic in tokyo night
 
-colorscheme tokyonight "set color scheme
-"colorscheme retrobox  "set color scheme
+colorscheme tokyonight # set color scheme
+# colorscheme retrobox  # set color scheme
 
-" Autocompletion settings
-"for more information: :h ins-autocompletion
-
-"set completeopt=menuone,noinsert,noselect
+# Autocompletion settings
+# for more information: :h ins-autocompletion
+# set completeopt=menuone,noinsert,noselect
 set autocomplete
 set complete=.^5,w^5,b^5,u^5
 set completeopt=popup
 
-"Keys Defenitions
-let mapleader=" " "set leader key to space
-" Call commmand Files of FZF
+# Keys Defenitions
+g:mapleader = " " # set leader key to space
+# Call commmand Files of FZF
 nmap <silent> <leader>f <Cmd>Files<CR>
-" Call commmand RG of FZF
+# Call commmand RG of FZF
 nmap <silent> <leader>g <Cmd>RG<CR>
 
-" Defenitions 
-set mouse=a "Enable mouse in all modes
+# Defenitions 
+set mouse=a # Enable mouse in all modes
 set nocompatible
-" filetype off "Don't detect file type
-set hlsearch "highlight searches
-set tabstop=2 "tabs with 2 spaces
-set shiftwidth=2 "tabs swift equal to 2 spaces
-set expandtab "Convert tab to spaces
-set t_Co=256 "Teminal colors to 256
-set background=dark "set back color to dark
-set number " Set numbers
-set relativenumber " Relativa numbers
-set wildmenu "set a more usefull menu
-set colorcolumn=120"Mark that you don't whant to go over 80
-set cursorline "highlight cursor line
-syntax on "Syntax highlight
-set ignorecase "ignore case in search
+filetype off # Don't detect file type
+set hlsearch # highlight searches
+set tabstop=2 # tabs with 2 spaces
+set shiftwidth=2 # tabs swift equal to 2 spaces
+set expandtab # Convert tab to spaces
+set t_Co=256 # Teminal colors to 256
+set background=dark # set back color to dark
+set number # Set numbers
+set relativenumber # Relativa numbers
+set wildmenu # set a more usefull menu
+set colorcolumn=120 # Mark that you don't whant to go over 120
+set cursorline # highlight cursor line
+syntax on # Syntax highlight
+set ignorecase # ignore case in search
+
+
+# ==========================================
+# LSP Configuration (yegappan/lsp)
+# ==========================================
+
+# 1. Visual & Behavior Options
+var lspOpts = {
+  autoHighlightDiags: false,
+  showDiagWithVirtualText: false,
+  keepFocusInReferencesWindow: true,
+  usePopupInCodeAction: true,
+  showSignatureHelpOnTrigger: true,
+  completionMatcher: 'case',
+  ignoreMissingServer: true,
+}
+autocmd User LspSetup call LspOptionsSet(lspOpts)
+
+# 2. Language Servers Setup
+# Ensure these binaries are installed on your OS (e.g., via pacman or pip)
+var lspServers = [
+  {
+    name: 'clangd',
+    filetype: ['c', 'cpp'],
+    path: 'clangd',
+    args: ['--background-index']
+  },
+  {
+    name: 'bashls',
+    filetype: ['sh', 'bash'],
+    path: 'bash-language-server',
+    args: ['start']
+  },
+]
+autocmd User LspSetup call LspAddServer(lspServers)
+
+# 3. LSP Keybindings (Only active when LSP attaches to a buffer)
+autocmd User LspAttached {
+  nnoremap <buffer> <silent> gd <Cmd>LspGotoDefinition<CR>
+  nnoremap <buffer> <silent> gr <Cmd>LspShowReferences<CR>
+  nnoremap <buffer> <silent> K  <Cmd>LspHover<CR>
+  nnoremap <buffer> <silent> [d <Cmd>LspDiag prev<CR>
+  nnoremap <buffer> <silent> ]d <Cmd>LspDiag next<CR>
+  nnoremap <buffer> <silent> <leader>e <Cmd>LspDiag current<CR>
+  nnoremap <buffer> <silent> <leader>rn <Cmd>LspRename<CR>
+  nnoremap <buffer> <silent> <leader>ca <Cmd>LspCodeAction<CR>
+}
+
+autocmd User LspDetached {
+  silent! nunmap <buffer> gd
+  silent! nunmap <buffer> gr
+  silent! nunmap <buffer> K
+  silent! nunmap <buffer> [d
+  silent! nunmap <buffer> ]d
+  silent! nunmap <buffer> <leader>e
+  silent! nunmap <buffer> <leader>rn
+  silent! nunmap <buffer> <leader>ca
+}
