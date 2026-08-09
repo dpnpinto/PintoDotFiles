@@ -5,7 +5,7 @@ vim9script
 # :PlugInstall
 # Zezoca local stuff 
 g:llama_config = {
-endpoint_fim: 'llama.cpp_server:port/infill',
+endpoint_fim: '192.168.8.172:8080/infill',
 show_info: 0,
 auto_fim: true,
 ring_update_ms: 500,
@@ -56,19 +56,25 @@ nmap <silent> <leader>g <Cmd>RG<CR>
 # Defenitions 
 set mouse=a # Enable mouse in all modes
 set nocompatible
+set termguicolors # enable 24-bit RGB colors
 filetype off # Don't detect file type
 set hlsearch # highlight searches
-set tabstop=2 # tabs with 2 spaces
-set shiftwidth=2 # tabs swift equal to 2 spaces
+syntax on # Syntax highlight
+set tabstop=4 # tabs with 4 spaces
+set shiftwidth=4 # tabs swift equal to 4 spaces
+set softtabstop=4  # spaces instead of tabs
+set smarttab # smart tabs
+set smartindent # smart indent
+set autoindent # auto indent
 set expandtab # Convert tab to spaces
-set t_Co=256 # Teminal colors to 256
+
+# set t_Co=256 # Teminal colors to 256
 set background=dark # set back color to dark
 set number # Set numbers
 set relativenumber # Relativa numbers
 set wildmenu # set a more usefull menu
 set colorcolumn=120 # Mark that you don't whant to go over 120
 set cursorline # highlight cursor line
-syntax on # Syntax highlight
 set ignorecase # ignore case in search
 
 
