@@ -1,5 +1,5 @@
 #!/bin/bash
 # by https://dpnpinto.github.io
-picom -b
-feh --bg-scale ~/.config/backimg/space_arch.png &
-exec dwm
+xcompmgr & // Enable Composition
+feh --bg-scale ~/.config/backimg/space_arch.png & // Set Background image
+exec dwm // Launch DWM Window Manager
