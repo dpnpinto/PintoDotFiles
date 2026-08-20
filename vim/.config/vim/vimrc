@@ -55,7 +55,7 @@ nmap <silent> <leader>g <Cmd>RG<CR>
 
 # Defenitions 
 set mouse=a # Enable mouse in all modes
-set nocompatible
+set nocompatible # Disable VI Compatibility
 set termguicolors # enable 24-bit RGB colors
 filetype off # Don't detect file type
 set hlsearch # highlight searches
