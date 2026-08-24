@@ -36,7 +36,7 @@ alias docker-clean=' \
   docker network prune ; \ 
   docker volume prune ; '
 
-# Get some nice colors in man pages and use most as the pager
+# Get some nice colors in man pages and use less as the pager
 
 export MANPAGER="less -R --use-color -Dd+r -Du+b"
 export MANROFFOPT="-P -c"
