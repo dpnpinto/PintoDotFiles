@@ -9,7 +9,7 @@ export PATH=$PATH:~/.local/bin
 export TERM=st
 export EDITOR=nvim
 
-# Get some nie  aliases for colors and stuff
+# Get some nice  aliases for colors and stuff
 
 alias ls='eza --icons'
 alias la='eza -alh --icons --git --group'
