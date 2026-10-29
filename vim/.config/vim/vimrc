@@ -31,6 +31,9 @@ plug#end()
 set termguicolors # enable 24-bit RGB colors
 set background=dark # set background to dark
 
+# things with vim packadd
+# packadd termdebug # debuging stuff
+
 # TokyoNight settings
 g:tokyonight_transparent = 1 # transparent background
 g:tokyonight_style = 'night' # available: night, storm
