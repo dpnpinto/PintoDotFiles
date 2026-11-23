@@ -22,7 +22,6 @@ alias ip='ip --color=always'
 alias dmesg='dmesg --color=always'
 alias ..='cd ..'
 alias vi='vim'
-alias nv='nvim'
 alias code='code-oss'
 alias df='dysk'
 alias lf='yazi'
@@ -36,10 +35,15 @@ alias docker-clean=' \
   docker network prune ; \ 
   docker volume prune ; '
 
-# Get some nice colors in man pages and use less as the pager
+# Get some nice colors in man and tldr pages
 
-export MANPAGER="less -R --use-color -Dd+r -Du+b"
-export MANROFFOPT="-P -c"
+man() {
+    command man "$@" | bat -l man --style=-numbers
+}
+
+tldr() {
+    command tldr "$@" | bat -l man --style=-numbers
+}
 
 #  Get git info in terminal
 
