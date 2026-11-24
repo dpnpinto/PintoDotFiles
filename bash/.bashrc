@@ -38,11 +38,11 @@ alias docker-clean=' \
 # Get some nice colors in man and tldr pages
 
 man() {
-    command man "$@" | bat -l man --style=-numbers
+    command man "$@" | bat -l man --style=plain
 }
 
 tldr() {
-    command tldr "$@" | bat -l man --style=-numbers
+    command tldr "$@" | bat -l man --style=plain
 }
 
 #  Get git info in terminal
