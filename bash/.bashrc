@@ -36,14 +36,10 @@ alias docker-clean=' \
   docker network prune ; \ 
   docker volume prune ; '
 
-# Get some nice colors in man and tldr pages
+# Get some nice colors in man
 
 man() {
     command man "$@" | bat -l man --style=plain
-}
-
-tldr() {
-    command tldr "$@" | bat -l man --style=plain
 }
 
 #  Get git info in terminal
